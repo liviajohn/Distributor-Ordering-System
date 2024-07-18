@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E0E8F9; -fx-background-radius: 10; -fx-padding: 20; -fx-border-color: #627C9E; -fx-border-radius: 10;">
+            <children>
+                <Label text="Invalid Login Info" textFill="#313c73">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label text="Please try again" textFill="#313c73">
+                    <font>
+                        <Font name="Arial" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

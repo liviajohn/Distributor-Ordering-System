@@ -8,7 +8,7 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <Button text="Add New Customer" onAction="#onAddNewCustomerButtonClick"/>
-    <Button text="Take Order" onAction="#onTakeOrderButtonClick"/>
+    <Button text="Customer Management" onAction="#onAddNewCustomerButtonClick"/>
+    <Button text="Start a New Order" onAction="#onTakeOrderButtonClick"/>
 </VBox>
 
