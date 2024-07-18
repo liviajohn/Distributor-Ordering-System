@@ -13,9 +13,9 @@
       <children>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Label alignment="CENTER" contentDisplay="CENTER" text="Login" textAlignment="CENTER" textFill="#4e02c0">
+               <Label alignment="CENTER" contentDisplay="CENTER" text="Login" textAlignment="CENTER" textFill="#313c73">
                   <font>
-                     <Font name="Arial Bold" size="18.0" />
+                     <Font name="Arial Bold" size="30.0" />
                   </font></Label>
             </children>
          </HBox>
