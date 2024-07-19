@@ -24,4 +24,12 @@ public class DashboardController {
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setScene(scene);
     }
+
+    @FXML
+    protected void onLogoutButtonClick(ActionEvent event) throws Exception {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/logout-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setScene(scene);
+    }
 }
