@@ -44,7 +44,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="6">
             <children>
-                <Button style="-fx-background-color: #d20000; -fx-text-fill: white;" text="Logout" onAction="#onLogoutButtonClick"/>
+                <Button onAction="#onLogoutButtonClick" style="-fx-background-color: #d20000; -fx-text-fill: white;" text="Logout" />
             </children>
         </HBox>
         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="5" GridPane.rowSpan="3">
@@ -57,9 +57,9 @@
                 <Button onAction="#onTakeOrderButtonClick" style="-fx-background-color: #E57373; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 40px;" text="Start a New Order" textAlignment="CENTER" />
             </children>
         </HBox>
-        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowSpan="2">
+        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowSpan="3">
             <children>
-                <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../images/AcmeLogo.png" />
                     </image>
