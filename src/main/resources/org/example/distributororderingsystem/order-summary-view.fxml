@@ -7,14 +7,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.distributororderingsystem.OrderSummaryController" spacing="10" padding="10,10,10,10">
-    <TableView fx:id="orderTableView">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.distributororderingsystem.OrderSummaryController" spacing="10" padding="20">
+    <Label text="Thank you for your order!" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <TableView fx:id="orderTableView" style="-fx-padding: 10;">
         <columns>
-            <TableColumn fx:id="itemColumn" text="Item"/>
-            <TableColumn fx:id="quantityColumn" text="Quantity"/>
-            <TableColumn fx:id="costColumn" text="Cost"/>
+            <TableColumn fx:id="itemColumn" text="Item" />
+            <TableColumn fx:id="quantityColumn" text="Quantity" />
+            <TableColumn fx:id="costColumn" text="Cost" />
         </columns>
     </TableView>
-    <Label fx:id="totalCostLabel" text="Total Cost: "/>
-    <Button text="Save Order" onAction="#saveOrder"/>
+    <Label fx:id="totalCostLabel" text="Total Cost: " style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Button text="Save Order" onAction="#saveOrder" style="-fx-font-size: 14px;" />
 </VBox>

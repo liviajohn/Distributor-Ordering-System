@@ -39,7 +39,7 @@ public class OrderSummaryController {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
-        //Replace with actual data when integrated with order entry form
+        // Example data, replace with actual data when integrated with order entry form
         orderItems = List.of(
                 new OrderItem("Item 1", 2, 19.99),
                 new OrderItem("Item 2", 1, 9.99),
@@ -49,7 +49,7 @@ public class OrderSummaryController {
         orderTableView.getItems().setAll(orderItems);
 
         totalCost = orderItems.stream().mapToDouble(item -> item.getQuantity() * item.getCost()).sum();
-        totalCostLabel.setText("Total Cost: " + totalCost);
+        totalCostLabel.setText("Total Cost: $" + String.format("%.2f", totalCost));
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class OrderSummaryController {
             for (OrderItem item : orderItems) {
                 writer.write(item.toString() + "\n");
             }
-            writer.write("Total Cost: " + totalCost + "\n");
+            writer.write("Total Cost: $" + String.format("%.2f", totalCost) + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,7 +98,8 @@ public class OrderSummaryController {
 
         @Override
         public String toString() {
-            return item + ": " + quantity + " @ " + cost;
+            return item + ": " + quantity + " @ $" + String.format("%.2f", cost);
         }
     }
 }
+
