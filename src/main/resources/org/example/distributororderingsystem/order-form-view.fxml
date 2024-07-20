@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -15,42 +16,56 @@
     <TextField fx:id="searchField" promptText="Search customers..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
     <!-- Customer List -->
-    <Text text="Select Customer:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+    <Text fill="#313c73" text="Select Customer:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <font>
             <Font name="Arial Bold" size="16" />
         </font>
     </Text>
     <ListView fx:id="customerListView" prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
 
-    <Text text="Delivery Date:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-    <TextField fx:id="deliveryDateField" promptText="mm/dd/yyyy" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+    <Text text="Delivery Date:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <TextField fx:id="deliveryDateField" promptText="mm/dd/yyyy" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
-    <Text text="Sales Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-    <TextField fx:id="salesRepIdField" promptText="Enter Sales Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+    <Text text="Sales Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <ComboBox fx:id="salesRepIdComboBox" promptText="Select Sales Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="6" />
 
-    <Text text="Delivery Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-    <TextField fx:id="deliveryRepIdField" promptText="Enter Delivery Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+    <Text text="Delivery Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <ComboBox fx:id="deliveryRepIdComboBox" promptText="Select Delivery Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="7" />
 
-    <!-- Next Button -->
+    <!-- Navigation Buttons -->
     <HBox alignment="CENTER" spacing="10" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9">
-        <Button onAction="#onNextButtonClick" text="Next" />
+        <Button onAction="#onBackButtonClick" text="Back" translateX="-155.0" />
+        <Button onAction="#onNextButtonClick" text="Next" translateX="155.0" />
     </HBox>
-   <columnConstraints>
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+
+    <!-- Logo -->
+    <HBox prefHeight="100.0" prefWidth="200.0">
+        <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75">
+                <image>
+                    <Image url="@../../../images/Acme logo v2.png" />
+                </image>
+            </ImageView>
+        </children>
+    </HBox>
+
+    <columnConstraints>
+        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
 </GridPane>
