@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.distributororderingsystem.OrderFormController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- Search Field -->
+    <Text text="Search:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="searchField" promptText="Search customers..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+
+    <!-- Customer List -->
+    <Text text="Select Customer:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+        <font>
+            <Font name="Arial Bold" size="16" />
+        </font>
+    </Text>
+    <ListView fx:id="customerListView" prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+
+    <Text text="Delivery Date:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField fx:id="deliveryDateField" promptText="mm/dd/yyyy" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+
+    <Text text="Sales Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <TextField fx:id="salesRepIdField" promptText="Enter Sales Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+
+    <Text text="Delivery Rep ID:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <TextField fx:id="deliveryRepIdField" promptText="Enter Delivery Rep ID" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+
+    <!-- Next Button -->
+    <HBox alignment="CENTER" spacing="10" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9">
+        <Button onAction="#onNextButtonClick" text="Next" />
+    </HBox>
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
