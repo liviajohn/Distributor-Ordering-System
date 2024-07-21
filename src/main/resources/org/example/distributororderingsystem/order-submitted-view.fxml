@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.distributororderingsystem.OrderSubmittedController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- Order Submitted Message -->
+    <Label alignment="CENTER" contentDisplay="CENTER" text="Order Submitted" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <font>
+            <Font name="Arial Bold" size="28.0" />
+        </font>
+    </Label>
+
+    <!-- Navigation Buttons -->
+    <HBox alignment="CENTER" spacing="10" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+   <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../images/Acme logo v2.png" />
+            </image>
+         </ImageView>
+      </children>
+   </HBox>
+   <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onDashboardButtonClick" style="-fx-background-color: #313c73; -fx-text-fill: white;" text="Dashboard" textAlignment="CENTER" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+     <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" onAction="#onLogoutButtonClick" style="-fx-background-color: #d20000; -fx-text-fill: white;" text="Logout" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+     <Button onAction="#onNewOrderButtonClick" text="New Order" textAlignment="CENTER" textFill="#142f19" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>
