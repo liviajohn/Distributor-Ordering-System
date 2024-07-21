@@ -27,24 +27,33 @@ public class InventoryViewController {
     private Button addToCart;
     @FXML
     private Button Checkout;
+    @FXML
+    private ImageView backArrow;
 
     @FXML
     protected void initialize() {
-        id.setText(ProductManagement.getIDList());
-        // Set other product details as needed
-        // Example:
-        // Product product = ProductManagement.getProduct(id);
-        // productName.setText(product.getName());
-        // brandName.setText(product.getBrand());
-        // size.setText(product.getSize());
-        // productClass.setText(product.getProductClass());
-        // amountAvailable.setText(String.valueOf(product.getAvailable()));
+        id.setText(ProductManagement.getIDList(15));
+        productName.setText(ProductManagement.getNameList(15));
+        brandName.setText(ProductManagement.getBrandList(15));
+        size.setText(ProductManagement.getSizeList(15));
+        productClass.setText(ProductManagement.getClassList(15));
+        amountAvailable.setText(ProductManagement.getAvailableList(15));
+    }
+
+    @FXML
+    protected void onBackArrowClick(ActionEvent event) throws Exception {
+        // Go back to the Order Form
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/order-form-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setScene(scene);
     }
 
     @FXML
     protected void onCheckoutButtonClick() {
         // Implement checkout functionality
     }
+
     @FXML
     protected void onLogoutButtonClick(ActionEvent event) throws Exception {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
