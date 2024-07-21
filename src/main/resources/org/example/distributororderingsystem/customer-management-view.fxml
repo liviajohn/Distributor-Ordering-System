@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="CENTER" hgap="10" prefHeight="471.0" prefWidth="450.0" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.distributororderingsystem.CustomerManagementController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- Search Field -->
+    <Label text="Search:" textAlignment="RIGHT" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <TextField fx:id="searchField" prefWidth="317.0" promptText="Search customers..." GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+
+    <!-- Customer List -->
+    <ListView fx:id="customerListView" prefHeight="212.0" prefWidth="397.0" GridPane.columnSpan="5" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+
+    <!-- Buttons -->
+    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="397.0" spacing="10" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+        <Button onAction="#onBackButtonClick" text="Back" translateX="-120.0" />
+        <Button onAction="#onAddCustomerButtonClick" text="Add Customer" translateX="120.0" />
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4">
+        <children>
+            <Button onAction="#onLogoutButtonClick" style="-fx-background-color: #d20000; -fx-text-fill: white;" text="Logout" />
+        </children>
+    </HBox>
+   <Label text="Customers" textFill="#313c73" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <font>
+         <Font name="System Bold" size="32.0" />
+      </font>
+   </Label>
+   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.halignment="LEFT">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../images/Acme logo v2.png" />
+            </image>
+         </ImageView>
+      </children>
+   </HBox>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="122.0" minWidth="10.0" prefWidth="69.00000762939453" />
+      <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="71.66665903727213" />
+      <ColumnConstraints maxWidth="84.0" minWidth="5.0" prefWidth="64.33333333333331" />
+      <ColumnConstraints maxWidth="85.33333333333337" minWidth="6.0" prefWidth="65.0" />
+      <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="64.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="94.0" minHeight="4.0" prefHeight="18.0" />
+      <RowConstraints maxHeight="113.33333333333331" minHeight="0.0" prefHeight="73.33333333333331" />
+      <RowConstraints maxHeight="143.00001525878903" minHeight="0.0" prefHeight="78.66666666666669" />
+      <RowConstraints maxHeight="212.99999999999997" minHeight="10.0" prefHeight="62.99998474121094" />
+      <RowConstraints maxHeight="25.0" minHeight="9.0" prefHeight="16.0" />
+   </rowConstraints>
+</GridPane>

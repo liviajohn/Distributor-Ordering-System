@@ -1,62 +1,112 @@
 package org.example.distributororderingsystem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.List;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class InventoryViewController {
 
     @FXML
-    private Button AddToCart;
+    private ListView<String> productListView;
     @FXML
-    private Button Checkout;
+    private TextField quantityField;
     @FXML
-    private ImageView backArrow;
-    @FXML
-    private TableView<Product> productTableView;
-    @FXML
-    private TableColumn<Product, Integer> idColumn;
-    @FXML
-    private TableColumn<Product, String> nameColumn;
-    @FXML
-    private TableColumn<Product, String> brandColumn;
-    @FXML
-    private TableColumn<Product, String> sizeColumn;
-    @FXML
-    private TableColumn<Product, String> productclassColumn;
-    @FXML
-    private TableColumn<Product, Integer> availableColumn;
+    private TextField searchField;
 
-    private Cart cart;
+    private ObservableList<String> products;
+    private ObservableList<String> filteredProducts;
+    private ObservableList<String> selectedProducts = FXCollections.observableArrayList();
 
     @FXML
-    protected void initialize() {
-        cart = new Cart();
+    public void initialize() {
+        products = FXCollections.observableArrayList();
+        filteredProducts = FXCollections.observableArrayList();
+        loadProductsFromFile("src/main/java/org/example/distributororderingsystem/Products.txt");
+        productListView.setItems(filteredProducts);
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
-        productclassColumn.setCellValueFactory(new PropertyValueFactory<>("productClass"));
-        availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
+        // Add listener to the search field to filter the product list
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> filterProducts(newValue));
+    }
 
-        productTableView.setItems(ProductManagement.getProductsAsObservableList());
+    private void loadProductsFromFile(String filePath) {
+        try {
+            Scanner scanner = new Scanner(new File(filePath));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split("\t");
+                if (parts.length == 10) {
+                    products.add(parts[1] + "\t" + parts[2] + "\t" + parts[3] + "\t" + parts[4] + "\t" + parts[5]);
+                }
+            }
+            scanner.close();
+            filteredProducts.setAll(products); // Initialize the filtered list with all products
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void filterProducts(String filter) {
+        if (filter == null || filter.isEmpty()) {
+            filteredProducts.setAll(products);
+        } else {
+            ObservableList<String> filteredList = FXCollections.observableArrayList();
+            for (String product : products) {
+                if (product.toLowerCase().contains(filter.toLowerCase())) {
+                    filteredList.add(product);
+                }
+            }
+            filteredProducts.setAll(filteredList);
+        }
     }
 
     @FXML
-    protected void onBackArrowClick(ActionEvent event) throws Exception {
-        // Go back to the Order Form
+    protected void onAddToCartButtonClick(ActionEvent event) {
+        String selectedProduct = productListView.getSelectionModel().getSelectedItem();
+        String quantity = quantityField.getText();
+
+        if (selectedProduct != null && !quantity.isEmpty()) {
+            selectedProducts.add(selectedProduct + " - Quantity: " + quantity);
+            System.out.println("Added to cart: " + selectedProduct + " - Quantity: " + quantity);
+        } else {
+            // Show an error message
+            System.out.println("Please select a product and enter a quantity.");
+        }
+    }
+
+    @FXML
+    protected void onDoneButtonClick(ActionEvent event) throws IOException {
+        // Proceed to the Order Summary page
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/order-summary-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        OrderSummaryController controller = fxmlLoader.getController();
+
+        // Pass the order details to the OrderSummaryController
+        controller.setOrderDetails(
+                OrderFormController.selectedCustomer,
+                OrderFormController.selectedDeliveryDate,
+                OrderFormController.selectedSalesRepId,
+                OrderFormController.selectedDeliveryRepId,
+                selectedProducts
+        );
+
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void onBackButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/order-form-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
@@ -64,45 +114,7 @@ public class InventoryViewController {
     }
 
     @FXML
-    protected void onAddToCartButtonClick() {
-        Product selectedProduct = productTableView.getSelectionModel().getSelectedItem();
-        if (selectedProduct != null) {
-            cart.addProduct(selectedProduct);
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Product Added");
-            alert.setHeaderText(null);
-            alert.setContentText("Product " + selectedProduct.getName() + " added to cart.");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("No Selection");
-            alert.setHeaderText(null);
-            alert.setContentText("Please select a product to add to the cart.");
-            alert.showAndWait();
-        }
-    }
-
-
-    @FXML
-    protected void onCheckoutButtonClick(ActionEvent event) throws Exception {
-        if (!cart.getProducts().isEmpty()) {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/checkout-view.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            CheckoutViewController controller = loader.getController();
-            controller.setCart(cart);
-        } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Empty Cart");
-            alert.setHeaderText(null);
-            alert.setContentText("The cart is empty. Please add products to the cart.");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    protected void onLogoutButtonClick(ActionEvent event) throws Exception {
+    protected void onLogoutButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/logout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);

@@ -33,7 +33,7 @@
         <!-- Border around the options -->
         <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #F0F0F0; -fx-border-color: lightgray; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 20;" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="3" GridPane.rowSpan="7">
             <HBox alignment="CENTER" spacing="40">
-                <Button onAction="#onAddNewCustomerButtonClick" style="-fx-background-color: #4B6D9B; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 30px;" text="Customer Management" textAlignment="CENTER" />
+                <Button onAction="#onCustomerManagementButtonClick" style="-fx-background-color: #4B6D9B; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 30px;" text="Customer Management" textAlignment="CENTER" />
                 <Button onAction="#onTakeOrderButtonClick" style="-fx-background-color: #E57373; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 30px;" text="Start a New Order" textAlignment="CENTER" />
             </HBox>
         </VBox>
