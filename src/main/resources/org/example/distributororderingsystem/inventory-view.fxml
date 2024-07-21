@@ -7,6 +7,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.distributororderingsystem.InventoryViewController">
    <children>
@@ -35,42 +37,16 @@
          </font>
       </Text>
       <Rectangle fill="#d9d9d9" height="306.0" layoutX="21.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="558.0" />
-      <Rectangle fill="WHITE" height="24.0" layoutX="24.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="72.0" />
-      <Text fill="#636363" layoutX="27.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product ID">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
-      <Rectangle fill="WHITE" height="24.0" layoutX="99.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="197.0" />
-      <Text fill="#636363" layoutX="102.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
-      <Rectangle fill="WHITE" height="24.0" layoutX="523.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="53.0" />
-      <Rectangle fill="WHITE" height="24.0" layoutX="446.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="75.0" />
-      <Rectangle fill="WHITE" height="24.0" layoutX="376.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="67.0" />
-      <Rectangle fill="WHITE" height="24.0" layoutX="300.0" layoutY="97.0" stroke="#a2a5b5" strokeType="INSIDE" width="72.0" />
-      <Text fill="#636363" layoutX="530.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
-      <Text fill="#636363" layoutX="450.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Class">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
-      <Text fill="#636363" layoutX="382.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
-      <Text fill="#636363" layoutX="305.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Name">
-         <font>
-            <Font name="Open Sans Light" size="11.0" />
-         </font>
-      </Text>
+      <TableView fx:id="productTableView" layoutX="21" layoutY="124" prefHeight="200.0" prefWidth="558.0">
+         <columns>
+            <TableColumn fx:id="idColumn" text="Product ID" prefWidth="75.0"/>
+            <TableColumn fx:id="nameColumn" text="Product Name" prefWidth="197.0"/>
+            <TableColumn fx:id="brandColumn" text="Brand Name" prefWidth="72.0"/>
+            <TableColumn fx:id="sizeColumn" text="Size" prefWidth="67.0"/>
+            <TableColumn fx:id="productclassColumn" text="Product Class" prefWidth="75.0"/>
+            <TableColumn fx:id="availableColumn" text="Amount" prefWidth="70.0"/>
+         </columns>
+      </TableView>
       <ImageView fitHeight="49.0" fitWidth="197.0" layoutX="14.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../java/org/example/distributororderingsystem/AcmeLogo.png" />
@@ -87,36 +63,6 @@
             <Font name="Open Sans SemiBold" size="16.0" />
          </font>
       </Button>
-      <Text fx:id="id" layoutX="24.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="71.4892578125">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="productName" layoutX="99.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="197.0">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="brandName" layoutX="300.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="72.0">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="size" layoutX="376.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="67.0">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="productClass" layoutX="448.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="72.0">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="amountAvailable" layoutX="523.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="52.5078125">
-         <font>
-            <Font name="Open Sans Light" size="12.0" />
-         </font>
-      </Text>
       <ImageView fx:id="backArrow" fitHeight="39.0" fitWidth="20.0" layoutX="11.0" layoutY="17.0" onMouseClicked="#onBackArrowClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../java/org/example/distributororderingsystem/BackArrow.png" />

@@ -43,7 +43,7 @@ public class Product {
     public Product(String name, boolean status, int id, String supplier, String brand, String size, char productClass, int available, int sales, int lastReceived) {
         this.name = name;
         this.status = status;
-        if (id >= 1000000 || id < 100000) {
+        if (id >= 1000000) {
             throw new IllegalArgumentException("Invalid product ID input.");
         } else {this.id = id;}
         this.supplier = supplier;

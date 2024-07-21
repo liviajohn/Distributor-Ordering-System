@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * Creates a set of products and provides methods to interact with said set.
  * @author Bethany Lee
@@ -21,6 +22,7 @@ public class ProductManagement {
         try {
             File input = new File(filename);
             Scanner read = new Scanner(input);
+
 
             String name, supplier, brand, size;
             boolean status;
@@ -45,10 +47,13 @@ public class ProductManagement {
                 Product temp = new Product(name, status, id, supplier, brand, size, productClass, available, sales, lastReceived);
                 productHashMap.put(id, temp);
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("Error: File not found.");
         }
+    }
+
+    public static ObservableList<Product> getProductsAsObservableList() {
+        return FXCollections.observableArrayList(productHashMap.values());
     }
 
     /**

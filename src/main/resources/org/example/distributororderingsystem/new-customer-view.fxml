@@ -13,4 +13,5 @@
     <TextField fx:id="addressField" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Address"/>
     <TextField fx:id="phoneField" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="Phone"/>
     <Button text="Add Customer" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#onAddCustomerButtonClick"/>
+    <Button fx:id="backButton" text="Back" onAction="#onBackButtonClick" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 </GridPane>

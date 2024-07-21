@@ -6,39 +6,46 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InventoryViewController {
 
-    @FXML
-    private Text id;
-    @FXML
-    private Text productName;
-    @FXML
-    private Text brandName;
-    @FXML
-    private Text size;
-    @FXML
-    private Text productClass;
-    @FXML
-    private Text amountAvailable;
     @FXML
     private Button addToCart;
     @FXML
     private Button Checkout;
     @FXML
     private ImageView backArrow;
+    @FXML
+    private TableView<Product> productTableView;
+    @FXML
+    private TableColumn<Product, Integer> idColumn;
+    @FXML
+    private TableColumn<Product, String> nameColumn;
+    @FXML
+    private TableColumn<Product, String> brandColumn;
+    @FXML
+    private TableColumn<Product, String> sizeColumn;
+    @FXML
+    private TableColumn<Product, String> productclassColumn;
+    @FXML
+    private TableColumn<Product, Integer> availableColumn;
 
     @FXML
     protected void initialize() {
-        id.setText(ProductManagement.getIDList(15));
-        productName.setText(ProductManagement.getNameList(15));
-        brandName.setText(ProductManagement.getBrandList(15));
-        size.setText(ProductManagement.getSizeList(15));
-        productClass.setText(ProductManagement.getClassList(15));
-        amountAvailable.setText(ProductManagement.getAvailableList(15));
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
+        productclassColumn.setCellValueFactory(new PropertyValueFactory<>("productClass"));
+        availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
+
+        productTableView.setItems(ProductManagement.getProductsAsObservableList());
     }
 
     @FXML
@@ -52,7 +59,7 @@ public class InventoryViewController {
 
     @FXML
     protected void onCheckoutButtonClick() {
-        // Implement checkout functionality
+        //Implement checkout functionality
     }
 
     @FXML
