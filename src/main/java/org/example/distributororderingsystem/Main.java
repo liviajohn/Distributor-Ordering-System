@@ -10,8 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load products from file
-        ProductManagement productManagement = new ProductManagement();
-        productManagement.addData("src/main/resources/org/example/distributororderingsystem/Products.txt");
+        ProductManagement.addData("src/main/resources/org/example/distributororderingsystem/Products.txt");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/login-view.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
