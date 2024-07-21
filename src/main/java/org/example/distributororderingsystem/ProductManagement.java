@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javafx.scene.text.Text;
 
 /**
  * Creates a set of products and provides methods to interact with said set.
@@ -107,85 +108,21 @@ public class ProductManagement {
     }
 
     /**
-     * Retrieves a number of product IDs from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many ids to fetch.
-     * @return A string representing the IDs of the products separated by new lines.
+     * Retrieves a number of sets of product information from the product hashmap and puts them in a String for display.
+     * @param num An int representing how many sets of product info to fetch.
+     * @return A string representing sets of product info separated by new lines.
      */
-    public static String getIDList(int num) {
+    public static Text[] getProductInfo(int num) {
         int[] ids = getIDs();
-        String result = "";
+        Text[] result = new Text[num];
+        String info = "";
         for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(ids[i] + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * Retrieves a number of product names from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many names to fetch.
-     * @return A string representing the names of the products separated by new lines.
-     */
-    public static String getNameList(int num) {
-        int[] ids = getIDs();
-        String result = "";
-        for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(productHashMap.get(ids[i]).getName() + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * Retrieves a number of product brands from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many brands to fetch.
-     * @return A string representing the brands of the products separated by new lines.
-     */
-    public static String getBrandList(int num) {
-        int[] ids = getIDs();
-        String result = "";
-        for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(productHashMap.get(ids[i]).getBrand() + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * Retrieves a number of product sizes from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many sizes to fetch.
-     * @return A string representing the sizes of the products separated by new lines.
-     */
-    public static String getSizeList(int num) {
-        int[] ids = getIDs();
-        String result = "";
-        for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(productHashMap.get(ids[i]).getSize() + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * Retrieves a number of product classes from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many classes to fetch.
-     * @return A string representing the classes of the products separated by new lines.
-     */
-    public static String getClassList(int num) {
-        int[] ids = getIDs();
-        String result = "";
-        for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(productHashMap.get(ids[i]).getProductClass() + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * Retrieves a number of product amounts from the product hashmap and puts them in a String for display.
-     * @param num An int representing how many amounts to fetch.
-     * @return A string representing the available amounts of the products separated by new lines.
-     */
-    public static String getAvailableList(int num) {
-        int[] ids = getIDs();
-        String result = "";
-        for (int i = 0; i < num && i < ids.length; i++) {
-            result = result.concat(productHashMap.get(ids[i]).getAvailable() + "\n");
+            info = info.concat(ids[i] + "\t" + productHashMap.get(ids[i]).getName()
+                    + "\t" + productHashMap.get(ids[i]).getBrand()
+                    + "\t" + productHashMap.get(ids[i]).getSize()
+                    + "\t" + productHashMap.get(ids[i]).getProductClass()
+                    + "\t" + productHashMap.get(ids[i]).getAvailable());
+            result[i].setText(info);
         }
         return result;
     }
