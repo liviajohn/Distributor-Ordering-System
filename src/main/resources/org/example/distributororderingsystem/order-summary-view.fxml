@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.distributororderingsystem.OrderSummaryController" spacing="10" padding="20">
-    <Label text="Thank you for your order!" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    <TableView fx:id="orderTableView" style="-fx-padding: 10;">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.distributororderingsystem.OrderSummaryController" spacing="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Thank you for your order!" styleClass="headerLabel" />
+    <TableView fx:id="orderTableView">
         <columns>
             <TableColumn fx:id="itemColumn" text="Item" />
             <TableColumn fx:id="quantityColumn" text="Quantity" />
             <TableColumn fx:id="costColumn" text="Cost" />
         </columns>
     </TableView>
-    <Label fx:id="totalCostLabel" text="Total Cost: " style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-    <Button text="Save Order" onAction="#saveOrder" style="-fx-font-size: 14px;" />
+    <Label fx:id="totalCostLabel" text="Total Cost: $" styleClass="totalCostLabel" />
+    <HBox spacing="10">
+        <Button text="Save as Text" onAction="#saveAsText" styleClass="actionButton" />
+        <Button text="Save as JSON" onAction="#saveAsJson" styleClass="actionButton" />
+        <Button text="Save as XML" onAction="#saveAsXml" styleClass="actionButton" />
+    </HBox>
 </VBox>

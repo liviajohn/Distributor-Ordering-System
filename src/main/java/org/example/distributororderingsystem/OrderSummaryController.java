@@ -9,7 +9,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -40,6 +39,14 @@ public class OrderSummaryController {
         costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
         // Example data, replace with actual data when integrated with order entry form
+
+        costColumn.prefWidthProperty().bind(
+                orderTableView.widthProperty()
+                        .subtract(itemColumn.widthProperty())
+                        .subtract(quantityColumn.widthProperty())
+                        .subtract(2)  // Adjustment for the vertical scrollbar width
+        );
+
         orderItems = List.of(
                 new OrderItem("Item 1", 2, 19.99),
                 new OrderItem("Item 2", 1, 9.99),
@@ -53,24 +60,75 @@ public class OrderSummaryController {
     }
 
     @FXML
-    public void saveOrder() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-        File file = fileChooser.showSaveDialog(new Stage());
+    public void saveAsText() {
+        File file = showSaveDialog("Text Files", "*.txt");
         if (file != null) {
-            saveOrderToFile(file);
+            StringBuilder content = new StringBuilder();
+            for (OrderItem item : orderItems) {
+                content.append(item.toString()).append("\n");
+            }
+            content.append("Total Cost: $").append(String.format("%.2f", totalCost)).append("\n");
+            try {
+                FileUtil.writeToFile(file.getAbsolutePath(), content.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void saveOrderToFile(File file) {
-        try (FileWriter writer = new FileWriter(file)) {
-            for (OrderItem item : orderItems) {
-                writer.write(item.toString() + "\n");
+    @FXML
+    public void saveAsJson() {
+        File file = showSaveDialog("JSON Files", "*.json");
+        if (file != null) {
+            StringBuilder content = new StringBuilder();
+            content.append("{\n");
+            content.append("\"orderItems\": [\n");
+            for (int i = 0; i < orderItems.size(); i++) {
+                OrderItem item = orderItems.get(i);
+                content.append("  {\n");
+                content.append("    \"item\": \"").append(item.getItem()).append("\",\n");
+                content.append("    \"quantity\": ").append(item.getQuantity()).append(",\n");
+                content.append("    \"cost\": ").append(item.getCost()).append("\n");
+                content.append("  }").append(i < orderItems.size() - 1 ? "," : "").append("\n");
             }
-            writer.write("Total Cost: $" + String.format("%.2f", totalCost) + "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
+            content.append("],\n");
+            content.append("\"totalCost\": ").append(totalCost).append("\n");
+            content.append("}\n");
+            try {
+                FileUtil.writeToFile(file.getAbsolutePath(), content.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    @FXML
+    public void saveAsXml() {
+        File file = showSaveDialog("XML Files", "*.xml");
+        if (file != null) {
+            StringBuilder content = new StringBuilder();
+            content.append("<order>\n");
+            for (OrderItem item : orderItems) {
+                content.append("  <item>\n");
+                content.append("    <name>").append(item.getItem()).append("</name>\n");
+                content.append("    <quantity>").append(item.getQuantity()).append("</quantity>\n");
+                content.append("    <cost>").append(item.getCost()).append("</cost>\n");
+                content.append("  </item>\n");
+            }
+            content.append("  <totalCost>").append(totalCost).append("</totalCost>\n");
+            content.append("</order>\n");
+            try {
+                FileUtil.writeToFile(file.getAbsolutePath(), content.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private File showSaveDialog(String description, String extension) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(description, extension));
+        return fileChooser.showSaveDialog(new Stage());
     }
 
     public static class OrderItem {
@@ -102,4 +160,3 @@ public class OrderSummaryController {
         }
     }
 }
-
