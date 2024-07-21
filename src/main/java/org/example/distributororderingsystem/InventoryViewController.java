@@ -5,17 +5,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.List;
 
 public class InventoryViewController {
 
     @FXML
-    private Button addToCart;
+    private Button AddToCart;
     @FXML
     private Button Checkout;
     @FXML
@@ -35,8 +38,11 @@ public class InventoryViewController {
     @FXML
     private TableColumn<Product, Integer> availableColumn;
 
+    private Cart cart;
+
     @FXML
     protected void initialize() {
+        cart = new Cart();
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -58,8 +64,41 @@ public class InventoryViewController {
     }
 
     @FXML
-    protected void onCheckoutButtonClick() {
-        //Implement checkout functionality
+    protected void onAddToCartButtonClick() {
+        Product selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            cart.addProduct(selectedProduct);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Product Added");
+            alert.setHeaderText(null);
+            alert.setContentText("Product " + selectedProduct.getName() + " added to cart.");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a product to add to the cart.");
+            alert.showAndWait();
+        }
+    }
+
+
+    @FXML
+    protected void onCheckoutButtonClick(ActionEvent event) throws Exception {
+        if (!cart.getProducts().isEmpty()) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/checkout-view.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+            CheckoutViewController controller = loader.getController();
+            controller.setCart(cart);
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Empty Cart");
+            alert.setHeaderText(null);
+            alert.setContentText("The cart is empty. Please add products to the cart.");
+            alert.showAndWait();
+        }
     }
 
     @FXML

@@ -13,7 +13,7 @@ public class Main extends Application {
         ProductManagement productManagement = new ProductManagement();
         productManagement.addData("src/main/resources/Products.txt");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/login-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/inventory-view.fxml"));
         Scene scene = new Scene(loader.load(), 800, 600);
         primaryStage.setTitle("Distributor Ordering System");
         primaryStage.setScene(scene);

@@ -53,12 +53,12 @@
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onLogoutButtonClick" style="-fx-background-color: #d20000; -fx-text-fill: white;" text="Logout" textAlignment="CENTER" translateX="525.0" translateY="10.0" />
-      <Button fx:id="addToCart" layoutX="493.0" layoutY="322.0" mnemonicParsing="false" text="Add 1 to Cart">
+      <Button fx:id="AddToCart" layoutX="493.0" layoutY="322.0" mnemonicParsing="false" text="Add 1 to Cart" onAction="#onAddToCartButtonClick">
          <font>
             <Font name="Open Sans SemiBold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="checkout" layoutX="514.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#onCheckoutButtonClick" text="Checkout">
+      <Button fx:id="Checkout" layoutX="514.0" layoutY="362.0" mnemonicParsing="false" onAction="#onCheckoutButtonClick" text="Checkout">
          <font>
             <Font name="Open Sans SemiBold" size="16.0" />
          </font>
