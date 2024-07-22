@@ -16,9 +16,9 @@
     <TextField fx:id="searchField" promptText="Search customers..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
     <!-- Customer List -->
-    <Text fill="#313c73" text="Select Customer:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+    <Text fill="#313c73" text="Place a New Order" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <font>
-            <Font name="Arial Bold" size="16" />
+            <Font name="Arial Bold" size="21.0" />
         </font>
     </Text>
     <ListView fx:id="customerListView" prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
