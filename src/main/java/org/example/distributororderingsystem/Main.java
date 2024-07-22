@@ -6,18 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        // Load products from file
-        ProductManagement productManagement = new ProductManagement();
-        productManagement.addData("src/main/resources/Products.txt");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/distributororderingsystem/inventory-view.fxml"));
-        Scene scene = new Scene(loader.load(), 800, 600);
-        primaryStage.setTitle("Distributor Ordering System");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/org/example/distributororderingsystem/login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Distributor Ordering System");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {

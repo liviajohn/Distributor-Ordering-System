@@ -50,7 +50,7 @@ public class AddCustomerController {
 
         if (!accountId.isEmpty() && !companyName.isEmpty() && !street.isEmpty() && !city.isEmpty() && !state.isEmpty() && !zipCode.isEmpty() && !phoneNumber.isEmpty() && !pointOfContact.isEmpty()) {
             String address = street + ", " + city + ", " + state + " " + zipCode;
-            Text newCustomer = new Text(accountId + "\t" + companyName + "\t" + address);
+            Text newCustomer = new Text(accountId + "\t\t" + companyName + "\t\t" + address);
             OrderFormController.customers.add(newCustomer);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
